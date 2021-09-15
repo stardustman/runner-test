@@ -48,6 +48,6 @@ jobs:
           APP_ENV=$(awk -F/ '{print $NF}' this_commit_branch.txt)
           echo $APP_ENV > this_branch.txt
           echo ===========================>
-          cat this_branch
+          cat this_branch.txt
           
 
