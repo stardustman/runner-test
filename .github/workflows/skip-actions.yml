@@ -36,9 +36,4 @@ jobs:
           echo test, and deploy your project.
           echo [skip ci]
           echo [ci skip]
-          echo ================>
-          pwd
-          # echo "add file in ci" > result.txt
-          # git add result.txt
-          # git commit -m "[skip ci]"
-          # git push
+
