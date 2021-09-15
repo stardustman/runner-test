@@ -45,9 +45,9 @@ jobs:
           git commit -m "[skip ci] add test.txt"
           git push
           echo ${{ github.ref }} > this_commit_branch.txt
-          APP_ENV=$(awk -F/ '{print $NF}' this_commit_branch.txt)
-          echo $APP_ENV > this_branch.txt
-          echo ===========================>
-          cat this_branch.txt
+          echo ${{ github.ref }} | awk -F/ '{print $NF}' > this_env.txt
+          echo "---------------------------->"
+          cat this_env.txt
+
           
 
