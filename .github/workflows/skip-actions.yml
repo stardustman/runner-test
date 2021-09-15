@@ -48,6 +48,8 @@ jobs:
           echo ${{ github.ref }} | awk -F/ '{print $NF}' > this_env.txt
           echo "---------------------------->"
           cat this_env.txt
+          
+          echo ${{ github.actor }}
 
           
 
