@@ -46,6 +46,8 @@ jobs:
           git push
           echo ${{ github.ref }} > this_commit_branch.txt
           APP_ENV=$(awk -F/ '{print $NF}' this_commit_branch.txt)
-          echo $APP_ENV
+          echo $APP_ENV > this_branch.txt
+          echo ===========================>
+          cat this_branch
           
 
