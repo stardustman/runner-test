@@ -37,6 +37,8 @@ jobs:
           echo [skip ci]
           echo [ci skip]
           pwd
+          git config user.email "you@example.com"
+          git config user.name ${{ github.actor }}
           touch test.txt
           echo "add file in ci" >> test.txt
           git add test.txt
