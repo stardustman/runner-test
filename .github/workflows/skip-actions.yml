@@ -36,4 +36,5 @@ jobs:
           echo test, and deploy your project.
           echo [skip ci]
           echo [ci skip]
+          pwd
 
