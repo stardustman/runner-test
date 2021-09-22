@@ -49,6 +49,7 @@ jobs:
   
   get-outputs-from-build:
     runs-on: macos-11
+    needs: build
     steps:
       - run: echo ${{needs.build.outputs.version}} 
 
