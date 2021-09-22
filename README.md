@@ -2,7 +2,7 @@
 
 ## GITHUB.WORKSPACE
 
-runner 的 workspace
+github 提供的 runner 的 workspace
 ```shell
 /home/runner/work/runner-test/runner-test
 ```
