@@ -51,14 +51,7 @@ jobs:
     runs-on: macos-11
     needs: build
     steps:
-      - run: echo ${{needs.build.outputs.version}} 
-
-          echo ${{ github.ref }} > this_commit_branch.txt
-          echo ${{ github.ref }} | awk -F/ '{print $NF}' > this_env.txt
-          echo "---------------------------->"
-          cat this_env.txt
-          
-          echo ${{ github.actor }}
+      - run: echo ${{ needs.build.outputs.version }} 
 
           
 
