@@ -44,4 +44,12 @@ jobs:
           git add test.txt
           git commit -m "[skip ci] add test.txt"
           git push
+    outputs:
+      version: ${{ github.sha }}
+  
+  get-outputs-from-build:
+    runs-on: macos-11
+    steps:
+      - run: echo ${{needs.build.outputs.version}} 
+
 
