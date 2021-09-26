@@ -44,6 +44,7 @@ jobs:
           git add test.txt
           git commit -m "[skip ci] add test.txt"
           git push
+          env
     outputs:
       version: ${{ github.sha }}
       
