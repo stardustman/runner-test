@@ -33,5 +33,7 @@ jobs:
           EOF
           docker-compose -f "docker-compose.yml" up -d --build
           docker ps
+          lsof -i:27017
+          lsof -i:6379
 
 
