@@ -30,7 +30,8 @@ jobs:
                 #     - 27017:27017
                 restart: always
                 network_mode: host
-            EOF
+          EOF
           docker-compose -f "docker-compose.yml" up -d --build
+          docker ps
 
 
