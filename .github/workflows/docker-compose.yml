@@ -9,28 +9,28 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - name: Start Mongo and Redis
-          run: |
-            cat <<EOF > docker-compose.yml
-              services:
+        run: |
+          cat <<EOF > docker-compose.yml
+            services:
 
-                redis:
-                  image: redis:5.0.7-alpine
-                  container_name: redis-5.0.7
-                  command: [ "redis-server", "--appendonly", "yes" ]
-                  volumes:
-                    - ~/data/redis-data:/data
-                  restart: always
-                  network_mode: host
+              redis:
+                image: redis:5.0.7-alpine
+                container_name: redis-5.0.7
+                command: [ "redis-server", "--appendonly", "yes" ]
+                volumes:
+                  - ~/data/redis-data:/data
+                restart: always
+                network_mode: host
 
-                mongo:
-                  image: mongo
-                  volumes:
-                    - ./mongo/db:/data/db
-                  # ports:
-                  #     - 27017:27017
-                  restart: always
-                  network_mode: host
-              EOF
-            docker-compose -f "docker-compose.yml" up -d --build
+              mongo:
+                image: mongo
+                volumes:
+                  - ./mongo/db:/data/db
+                # ports:
+                #     - 27017:27017
+                restart: always
+                network_mode: host
+            EOF
+          docker-compose -f "docker-compose.yml" up -d --build
 
 
