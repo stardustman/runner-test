@@ -5,7 +5,7 @@ on:
 
 jobs:
   produce-dir:
-    name: Add 3 and 7
+    name: upload-files
     runs-on: ubuntu-latest
     steps:
       - shell: bash
@@ -20,17 +20,17 @@ jobs:
           path: produce-dir/*
   
   consume-dir:
-    name: Multiply by 9
-    needs: job_1
-    runs_on: windows-latest
+    name: download-files
+    needs: upload-files
+    runs_on: ubuntu-latest
     steps:
-      - name: Download math result for job_1
+      - name: Download files
         uses: actions/download-artifact@v2
         with:
           name: upload-produce-dir
       - shell: bash
         run: |
           pwd
-          ls produce-dir
+          ls -al produce-dir
 
  
