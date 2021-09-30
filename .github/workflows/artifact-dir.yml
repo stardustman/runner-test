@@ -21,7 +21,7 @@ jobs:
   
   consume-dir:
     name: download-files
-    needs: upload-files
+    needs: produce-dir
     runs-on: ubuntu-latest
     steps:
       - name: Download files
