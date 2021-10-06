@@ -1,0 +1,35 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Using GITHUB_ENV File
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [github_env_file]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  job1:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: save info  to $GIGHUB_ENV file
+        run: |
+          echo "user_job1=${{ github.actor }}" >> $GITHUB_ENV
+
+      - name: get info from $GIGHUB_ENV file in same job
+        run: |
+          echo "${{env.user_job1}}"
+
+  job2:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: get info from $GIGHUB_ENV file
+        run: |
+          echo "${{ env.user_job1 }}"
