@@ -17,7 +17,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: upload-produce-dir
-          path: produce-dir/*
+          path: produce-dir
   
   consume-dir:
     name: download-files
@@ -31,6 +31,6 @@ jobs:
       - shell: bash
         run: |
           pwd
-          ls -al produce-dir
+          ls -alR produce-dir
 
  
