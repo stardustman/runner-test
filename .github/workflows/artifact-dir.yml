@@ -12,8 +12,8 @@ jobs:
         run: |
           pwd
           mkdir produce-dir
-          expr 3 + 7 > math-homework.txt
-          expr 30 + 70 > math-homework.txt
+          expr 3 + 7 > ./produce-dir/math-homework.txt
+          expr 30 + 70 > ./produce-dir/math-homework.txt
       - name: Upload math result for job_1
         uses: actions/upload-artifact@v2
         with:
