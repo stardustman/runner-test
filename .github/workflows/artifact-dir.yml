@@ -10,6 +10,7 @@ jobs:
     steps:
       - shell: bash
         run: |
+          pwd
           mkdir produce-dir
           expr 3 + 7 > math-homework.txt
           expr 30 + 70 > math-homework.txt
@@ -17,7 +18,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: upload-produce-dir
-          path: produce-dir
+          path: ./produce-dir/
   
   consume-dir:
     name: download-files
