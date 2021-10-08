@@ -26,8 +26,8 @@ jobs:
       - name: get info from $GIGHUB_ENV file in same job
         run: |
           echo "${{env.user_job1}}"
-          USER_JOB1=${{ env.user_job1 }}
-          echo $USER_JOB1
+          USER_ACTOR=${{ env.user_job1 }}
+          echo $USER_ACTOR
 
   job2:
     needs: job1
