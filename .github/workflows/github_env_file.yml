@@ -26,12 +26,14 @@ jobs:
       - name: get info from $GIGHUB_ENV file in same job
         run: |
           echo "${{env.user_job1}}"
+          USER_JOB1=${{ env.user_job1 }}
+          echo $USER_JOB1
 
   job2:
     needs: job1
     runs-on: ubuntu-18.04
     steps:
-      - name: get info from $GIGHUB_ENV file
+      - name: get info from $GIGHUB_ENV file(can't get from job1's GITHUB_ENV file)
         run: |
           echo "${{ env.user_job1 }}"
           USER_JOB1=${{ env.user_job1 }}
