@@ -28,5 +28,7 @@ jobs:
         run: echo $AUTHOR_NAME
         env:
           AUTHOR_NAME: ${{ steps.author.outputs.author }}
+      - name: print before variable AUTHOR_NAME
+        run: echo $AUTHOR_NAME
           
 
