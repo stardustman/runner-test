@@ -1,0 +1,32 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Workflow Commands
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ workflow-commands ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  inputs-outputs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get author name
+        id: author
+        run: echo "::set-output name=author::$(git show -s --format=%an)"
+      - name: Print author name
+        run: echo "${{ steps.author.outputs.author }}"
+      - name: Print author name with an environment variable
+        run: echo $AUTHOR_NAME
+        env:
+          AUTHOR_NAME: ${{ steps.author.outputs.author }}
+          
+
