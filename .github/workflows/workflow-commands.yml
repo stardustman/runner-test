@@ -32,4 +32,4 @@ jobs:
         id: path
         run: |
           echo $PATH
-          echo who
+          who
