@@ -40,4 +40,5 @@ jobs:
         run: |
           echo "=============> is login shell?"
           echo $0
-          cat $($0)
+          tmp_file_path=$0
+          cat $tmp_file_path
