@@ -33,3 +33,4 @@ jobs:
         run: |
           echo $PATH
           who
+          echo $0
