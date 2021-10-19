@@ -6,9 +6,9 @@ name: Workflow Commands
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ workflow-commands ]
+    branches: [workflow-commands]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,5 +28,8 @@ jobs:
         run: echo $AUTHOR_NAME
         env:
           AUTHOR_NAME: ${{ steps.author.outputs.author }}
-          
-
+      - name: System Path
+        id: path
+        run: |
+          echo $PATH
+          echo who
