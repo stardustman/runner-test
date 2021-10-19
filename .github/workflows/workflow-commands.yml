@@ -40,3 +40,4 @@ jobs:
         run: |
           echo "=============> is login shell?"
           echo $0
+          cat $(basename $0)
