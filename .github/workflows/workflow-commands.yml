@@ -33,4 +33,10 @@ jobs:
         run: |
           echo $PATH
           who
+  login-shell:
+    runs-on: ubuntu-latest
+    steps:
+      - name: is-login-shell
+        run: |
+          echo "=============> is login shell?"
           echo $0
