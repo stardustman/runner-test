@@ -22,11 +22,11 @@ jobs:
       - id: define_export
         run: |
           export PACKAGE_VERSION=1.2.3
-          echo "::set-output name=define_export::$PACKAGE_VERSION"
+          echo "::set-output name=define_export:: echo $PACKAGE_VERSION"
       - id: define
         run: |
           PACKAGE_VERSION=2.3.4
-          echo "::set-output name=define::$PACKAGE_VERSION"
+          echo "::set-output name=define:: echo $PACKAGE_VERSION"
 
 
     # Map a step output to a job output
