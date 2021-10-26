@@ -22,11 +22,20 @@ jobs:
       - id: define_export
         run: |
           export PACKAGE_VERSION=1.2.3
-          echo "::set-output name=define_export:: echo $PACKAGE_VERSION"
+          echo "::set-output name=define_export::$PACKAGE_VERSION"
       - id: define
         run: |
           PACKAGE_VERSION=2.3.4
-          echo "::set-output name=define:: echo $PACKAGE_VERSION"
+          echo "::set-output name=define::$PACKAGE_VERSION"
+
+      - name: Set the value
+        id: step_one
+        run: |
+          echo "action_state=yellow" >> $GITHUB_ENV
+      - name: Use the value
+        id: step_two
+        run: |
+          echo "${{ env.action_state }}" # This will output 'yellow'
 
 
     # Map a step output to a job output
@@ -35,6 +44,7 @@ jobs:
       output2: ${{ steps.step2.outputs.test }}
       outputs3: ${{ steps.define_export.define_export }}
       outputs4: ${{ steps.define_export.define }}
+      PACKAGE_VERSION: ${{env.actions_state}}
   job2:
     runs-on: ubuntu-latest
     needs: job1
@@ -42,8 +52,9 @@ jobs:
       - run: |
          echo ${{needs.job1.outputs.output1}} 
          echo ${{needs.job1.outputs.output2}}
-         echo ${{needs.job1.outputs.define_export}}
-         echo ${{needs.job1.outputs.define}}
+         echo ${{needs.job1.outputs.output3}}
+         echo ${{needs.job1.outputs.output4}}
+         echo ${{needs.job1.outputs.PACKAGE_VERSION}}
 
           
 
