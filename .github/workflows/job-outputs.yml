@@ -37,6 +37,13 @@ jobs:
         run: |
           echo "${{ env.action_state }}" # This will output 'yellow'
 
+      - name: Use CI_VERSION.txt
+        id: ci_version
+        run: |
+          PACKAGE_VERSION=$(cat CI_VERSION.txt | awk -F. '{print $1"."$2"."$3+1}')
+          echo $PACKAGE_VERSION > CI_VERSION.txt
+          echo "::set-output name=ci_version::$(cat CI_VERSION.txt)"
+
 
     # Map a step output to a job output
     outputs:
@@ -44,17 +51,20 @@ jobs:
       output2: ${{ steps.step2.outputs.test }}
       outputs3: ${{ steps.define_export.define_export }}
       outputs4: ${{ steps.define_export.define }}
-      PACKAGE_VERSION: ${{env.actions_state}}
+      PACKAGE_VERSION: ${{ env.actions_state }}
+      CI_VERSION: ${{ steps.ci_version.ci_version }}
   job2:
     runs-on: ubuntu-latest
     needs: job1
     steps:
       - run: |
-         echo ${{needs.job1.outputs.output1}} 
-         echo ${{needs.job1.outputs.output2}}
-         echo ${{needs.job1.outputs.output3}}
-         echo ${{needs.job1.outputs.output4}}
-         echo ${{needs.job1.outputs.PACKAGE_VERSION}}
+         echo ${{ needs.job1.outputs.output1 }} 
+         echo ${{ needs.job1.outputs.output2 }}
+         echo ${{ needs.job1.outputs.output3 }}
+         echo ${{ needs.job1.outputs.output4 }}
+         echo ${{ needs.job1.outputs.PACKAGE_VERSION }}
+         echo "=========>"
+         echo ${{ needs.job1.outputs.CI_VERSION }}
 
           
 
