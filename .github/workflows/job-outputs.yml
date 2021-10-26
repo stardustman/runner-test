@@ -1,0 +1,49 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Job outputs
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ job-outputs ]
+  pull_request:
+    branches: [ job-outputs ]
+
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - id: step1
+        run: echo "::set-output name=test::hello"
+      - id: step2
+        run: echo "::set-output name=test::world"
+      - id: define_export
+        run: |
+          export PACKAGE_VERSION=1.2.3
+          echo "::set-output name=define_export::$PACKAGE_VERSION"
+      - id: define
+        run: |
+          PACKAGE_VERSION=2.3.4
+          echo "::set-output name=define::$PACKAGE_VERSION"
+
+
+    # Map a step output to a job output
+    outputs:
+      output1: ${{ steps.step1.outputs.test }}
+      output2: ${{ steps.step2.outputs.test }}
+      outputs3: ${{ steps.define_export.define_export }}
+      outputs4: ${{ steps.define_export.define }}
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - run: |
+         echo ${{needs.job1.outputs.output1}} 
+         echo ${{needs.job1.outputs.output2}}
+         echo ${{needs.job1.outputs.define_export}}
+         echo ${{needs.job1.outputs.define}}
+
+          
+
