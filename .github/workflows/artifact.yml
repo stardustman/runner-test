@@ -18,9 +18,10 @@ jobs:
           path: math-homework.txt
   
   job_2:
+
     name: Multiply by 9
     needs: job_1
-    runs_on: windows-latest
+    runs-on: windows-latest
     steps:
       - name: Download math result for job_1
         uses: actions/download-artifact@v2
