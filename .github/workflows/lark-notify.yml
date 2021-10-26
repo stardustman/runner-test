@@ -1,0 +1,37 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Lark Notify
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ lark-notify ]
+  pull_request:
+    branches: [ lark-notify ]
+
+
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  notification:
+    name: IM Notification
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Notify to IM
+      uses: echoings/actions.notify@v0.1.0
+      with:
+        plat_type: 'Lark'
+        notify_title: 'Project Updated'
+        notify_message: 'Project updated, please check projects online status'
+      env:
+        NOTIFY_WEBHOOK: ${{ secrets.NOTIFY_WEBHOOK }}
+        NOTIFY_SIGNKEY: ${{ secrets.NOTIFY_SIGNKEY }}
+        # for Lark use
+        LARK_APP_ID: cli_a1ebc6cef7b8d00e
+        LARK_APP_SECRECT: w5kRPooGkaG4T7pP5muCleGxTPPeRf2B
+
+          
+

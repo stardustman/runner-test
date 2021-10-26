@@ -40,6 +40,7 @@ jobs:
       - name: Use CI_VERSION.txt
         id: ci_version
         run: |
+          echo $(pwd)
           PACKAGE_VERSION=$(cat CI_VERSION.txt | awk -F. '{print $1"."$2"."$3+1}')
           echo $PACKAGE_VERSION > CI_VERSION.txt
           echo "::set-output name=ci_version::$(cat CI_VERSION.txt)"
