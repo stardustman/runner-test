@@ -37,6 +37,20 @@ jobs:
           name: job_2
           path: result_job2.txt
 
+      - name: export variable
+        id: for_export
+        run: |
+          export test=abcd
+          env:
+            FIRST_NAME: $test
+            middle_name: $test
+            Last_Name: Octocat
+
+      - name: get variable
+        id: get_export
+        run: |
+          export value=${{jobs.job_2.steps.for_export.env.FIRST_NAME}}
+
   job_3:
     name: Display result
     needs: job_2
