@@ -1,0 +1,88 @@
+name: artifact-share-data-between-jobs
+on:
+  push:
+    branches: [ artifact ]
+
+jobs:
+  job_1:
+    name: Add 3 and 7
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+          expr 3 + 7 > result.txt
+      - name: Upload math result for job_1
+        uses: actions/upload-artifact@v2
+        with:
+          name: job_1
+          path: result.txt
+  
+  job_2:
+
+    name: Multiply by 9
+    needs: job_1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download math result for job_1
+        uses: actions/download-artifact@v2
+        with:
+          name: job_1
+      - shell: bash
+        run: |
+          job1_value=$(cat result.txt)
+          expr $value \*9 > result_job2.txt
+      - name: Upload math result for job_2
+        uses: actions/upload-artifact@v2
+        with:
+          name: job_2
+          path: result_job2.txt
+
+      - name: export variable
+        id: for_export
+        run: |
+          export test=abcd
+          env:
+            FIRST_NAME: $test
+            middle_name: $test
+            Last_Name: Octocat
+
+      - name: get variable
+        id: get_export
+        run: |
+          export value=${{jobs.job_2.steps.for_export.env.FIRST_NAME}}
+
+  job_3:
+    name: Display result
+    needs: job_2
+    runs-on: macos-latest
+    steps:
+      - name: Download math result for job_2
+        uses: actions/download-artifact@v2
+        with:
+          name: job_2
+      - name: Print the final result
+        shell: bash
+        run: |
+          value=`cat result_job2.txt`
+          echo The result is $value
+
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
+
+      - uses: actions-ecosystem/action-bump-semver@v1
+        id: bump-semver
+        with:
+          current_version: ${{ steps.get-latest-tag.outputs.tag }}
+          level: patch
+
+      - uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.bump-semver.outputs.new_version }}
+          message: '${{ steps.bump-semver.outputs.new_version }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
+
+  
