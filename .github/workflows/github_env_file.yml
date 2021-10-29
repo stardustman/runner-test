@@ -38,3 +38,6 @@ jobs:
           echo "${{ env.user_job1 }}"
           USER_JOB1=${{ env.user_job1 }}
           echo $USER_JOB1
+          echo "use export"
+          export USER_JOB1_EXPORT=${{ env.user_job1 }}
+          echo  $USER_JOB1_EXPORT
