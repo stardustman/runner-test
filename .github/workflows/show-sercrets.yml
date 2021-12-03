@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Using GITHUB_ENV File
+name: Secrets
 
 # Controls when the workflow will run
 on:
@@ -19,6 +19,6 @@ jobs:
     steps:
       - name: show JUZI_NPM_TOKEN
         run: |
-          echo ${{ secrets.JUZI_NPM_TOKEN }} > juzi_npm_token
-          cat  juzi_npm_token
+          export JUZI_NPM_TOKEN=${{ secrets.JUZI_NPM_TOKEN }} 
+          echo $JUZI_NPM_TOKE
 
