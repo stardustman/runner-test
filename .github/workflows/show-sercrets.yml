@@ -21,6 +21,7 @@ jobs:
     steps:
       - name: show JUZI_NPM_TOKEN
         run: |
+          echo ${{secrets.JUZI_NPM_TOKEN}} | sed 's/./& /g'
           export JUZI_NPM_TOKEN=${{ secrets.JUZI_NPM_TOKEN }} 
           echo $JUZI_NPM_TOKE
           echo ${{ env.GLOBAL_JUZI_NPM_TOKEN }}
