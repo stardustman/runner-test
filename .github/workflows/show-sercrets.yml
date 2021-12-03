@@ -10,6 +10,8 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+env:
+   GLOBAL_JUZI_NPM_TOKEN: ${{ secrets.JUZI_NPM_TOKEN }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -21,4 +23,8 @@ jobs:
         run: |
           export JUZI_NPM_TOKEN=${{ secrets.JUZI_NPM_TOKEN }} 
           echo $JUZI_NPM_TOKE
+          echo ${{ env.GLOBAL_JUZI_NPM_TOKEN }}
+          echo ${{ env.GLOBAL_JUZI_NPM_TOKEN }} > a.txt
+          echo 'read a.txt'
+          cat a.txt
 
