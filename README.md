@@ -10,3 +10,10 @@ github 提供的 runner 的 workspace
 ## skip ci
 
 在 git commit -m "[skip ci] ...."
+
+## upload artifact
+upload `dist` directory
+
+## download artifact
+download `dist` directory
+all files in `dist`, not containes `dist`
