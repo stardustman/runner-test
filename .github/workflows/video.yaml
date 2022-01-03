@@ -1,0 +1,23 @@
+name: video extract
+on:
+  push:
+    branches: [ video ]
+
+jobs:
+  video:
+    name: download video 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install you-get
+        shell: bash
+        run: |
+          pip3 install you-get
+      - name: Download video
+        shell: bash
+        run: |
+          you-get https://www.bilibili.com/video/BV12p411o75M
+          ls -alR
+
+
+    
+  
