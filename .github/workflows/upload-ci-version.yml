@@ -1,0 +1,20 @@
+name: generate-ci-version
+on:
+  push:
+    branches:
+      - generate-version
+
+jobs:
+  ci-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: generate a ci version
+        id: generate-ci-version
+        run: |
+          echo 1.33.8000000 > CI_VERSION.txt
+      - name: Upload CI_VERSION.txt for deploy
+        uses: actions/upload-artifact@v2
+        with:
+          name: ci-version
+          path: CI_VERSION.txt
+ 
