@@ -1,0 +1,19 @@
+name: download-ci-version
+on:
+  push:
+    branches:
+      - generate-version
+
+jobs:
+  ci-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload CI_VERSION.txt for deploy
+        uses: actions/download-artifact@v2
+        with:
+          name: ci-version
+      
+      - name: list
+        run: |
+          ls -alh
+          cat CI-VERSION.txt
