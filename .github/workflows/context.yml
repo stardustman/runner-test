@@ -1,0 +1,18 @@
+name: artifact-share-data-between-jobs
+on:
+  push:
+    branches: **
+
+jobs:
+  show:
+    name: show
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: |
+           echo ${{ github.event.number }}
+           echo ${{ github.run_id }}
+           echo ${{ github.run_number}}
+
+  
+ 
