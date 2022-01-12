@@ -13,6 +13,8 @@ jobs:
            echo ${{ github.event.number }}
            echo ${{ github.run_id }}
            echo ${{ github.run_number}}
+           PACKAGE_VERSION=v1.2.${{ github.run_id }}
+           echo PACKAGE_VERSION
 
   
  
