@@ -10,7 +10,7 @@ jobs:
     steps:
       - shell: bash
         run: |
-           echo ${{ github.event.number }}
+           echo ${{ github }}
            echo ${{ github.run_id }}
            echo ${{ github.run_number}}
            PACKAGE_VERSION=v1.2.${{ github.run_id }}
