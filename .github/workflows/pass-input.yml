@@ -1,6 +1,8 @@
 name: extract-audio-push
 
 on:
+  push:
+    
   workflow_dispatch:
     inputs:
       video_link:
