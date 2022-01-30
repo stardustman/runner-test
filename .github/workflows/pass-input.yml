@@ -1,0 +1,26 @@
+name: extract-audio-push
+
+on:
+  workflow_dispatch:
+    inputs:
+      video_link:
+        description: 'video link to extract audio'
+        required: true
+        default: 'https://www.bilibili.com/video/BV12p411o75M'
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Set the variables
+        run: export "VIDEO_LINK=${{ github.event.inputs.video_link }}"
+
+      - name: print
+        run: |
+          env 
+          python env
+          
