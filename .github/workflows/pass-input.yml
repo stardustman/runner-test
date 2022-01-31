@@ -24,5 +24,6 @@ jobs:
       - name: print
         run: |
           env 
-          python env
+          printenv VIDEO_LINK
+          python env.py
           
