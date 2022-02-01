@@ -1,0 +1,19 @@
+name: workflow test
+on:
+  workflow_dispatch:
+    inputs:
+      test-run:
+        description: 'Test (y/n)?'
+        required: true
+        default: 'y'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Yes branch
+        if: github.event.inputs.test-run == 'y'
+        run: |
+          echo "Test = Y"
+          export test1=${{ github.event.inputs.test-run }}
+          python read-vars.py
