@@ -13,9 +13,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Yes branch
         if: github.event.inputs.test-run != 'y'
         run: |
+          python -v
+          which python
           echo "Test = Y"
           export test1=${{ github.event.inputs.test-run }}
           python read-vars.py
